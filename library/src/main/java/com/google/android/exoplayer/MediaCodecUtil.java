@@ -217,6 +217,12 @@ public final class MediaCodecUtil {
         && "a70".equals(Util.DEVICE)) {
       return false;
     }
+    // Work around https://github.com/google/ExoPlayer/issues/1652
+    if (Util.SDK_INT == 18
+        && ("OMX.MARVELL.AUDIO.AACDECODER".equals(name) || "OMX.MARVELL.VIDEO.VMETADECODER".equals(name))
+        && "xo4".equals(Util.DEVICE)) {
+      return false;
+    }
 
     // Work around an issue where creating a particular MP3 decoder on some devices on platform API
     // version 16 crashes mediaserver.
